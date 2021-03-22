@@ -30,11 +30,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 # Find packages
 find_package(ament_cmake REQUIRED)
-find_package(class_loader REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(ros2_shared REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(tello_msgs REQUIRED)
@@ -60,10 +58,8 @@ set(DRIVER_NODE_SOURCES
   src/state_socket.cpp)
 
 set(DRIVER_NODE_DEPS
-  class_loader
   geometry_msgs
   rclcpp
-  ros2_shared
   sensor_msgs
   std_msgs
   tello_msgs)
