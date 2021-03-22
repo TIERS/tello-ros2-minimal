@@ -30,10 +30,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 # Find packages
 find_package(ament_cmake REQUIRED)
-find_package(camera_calibration_parsers REQUIRED)
 find_package(class_loader REQUIRED)
-find_package(cv_bridge REQUIRED)
-find_package(OpenCV REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(geometry_msgs REQUIRED)
@@ -44,8 +41,7 @@ find_package(tello_msgs REQUIRED)
 
 # Package includes not needed for CMake >= 2.8.11
 include_directories(
-  include
-  h264decoder)
+  include)
 
 # h264decoder uses deprecated ffmpeg calls, turn off the warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
@@ -61,26 +57,21 @@ set(DRIVER_NODE_SOURCES
   src/tello_driver_node.cpp
   src/tello_socket.cpp
   src/command_socket.cpp
-  src/state_socket.cpp
-  src/video_socket.cpp
-  h264decoder/h264decoder.cpp)
+  src/state_socket.cpp)
 
 set(DRIVER_NODE_DEPS
-  camera_calibration_parsers
   class_loader
-  cv_bridge
   geometry_msgs
-  OpenCV
   rclcpp
   ros2_shared
   sensor_msgs
   std_msgs
   tello_msgs)
 
-set(DRIVER_NODE_LIBS
-  avcodec
-  avutil
-  swscale)
+# set(DRIVER_NODE_LIBS
+#   avcodec
+#   avutil
+#   swscale)
 
 add_library(tello_driver_node SHARED
   ${DRIVER_NODE_SOURCES})
@@ -103,43 +94,6 @@ target_compile_definitions(tello_driver_node
   PRIVATE ASIO_STANDALONE
   PRIVATE ASIO_HAS_STD_CHRONO)
 
-#=============
-# Tello emulator
-#=============
-
-add_executable(tello_emulator src/tello_emulator.cpp)
-
-ament_target_dependencies(tello_emulator)
-
-target_compile_definitions(tello_emulator
-  PRIVATE ASIO_STANDALONE
-  PRIVATE ASIO_HAS_STD_CHRONO)
-
-#=============
-# Tello joy node
-#=============
-
-set(JOY_NODE_SOURCES
-  src/tello_joy_node.cpp)
-
-set(JOY_NODE_DEPS
-  class_loader
-  geometry_msgs
-  rclcpp
-  sensor_msgs
-  tello_msgs)
-
-add_library(tello_joy_node SHARED
-  ${JOY_NODE_SOURCES})
-
-target_compile_definitions(tello_joy_node
-  PRIVATE "COMPOSITION_BUILDING_DLL")
-
-ament_target_dependencies(tello_joy_node
-  ${JOY_NODE_DEPS})
-
-rclcpp_components_register_nodes(tello_joy_node "tello_joy::TelloJoyNode")
-set(node_plugins "${node_plugins}tello_joy::TelloJoyNode;$<TARGET_FILE:tello_joy_node>\n")
 
 #=============
 # Export incantations, see https://github.com/ros2/demos/blob/master/composition/CMakeLists.txt
@@ -169,16 +123,6 @@ target_compile_definitions(tello_driver_main
   PRIVATE ASIO_STANDALONE
   PRIVATE ASIO_HAS_STD_CHRONO)
 
-#=============
-# Tello joy main, statically linked to make IDE debugging easier
-#=============
-
-add_executable(tello_joy_main
-  src/tello_joy_main.cpp
-  ${JOY_NODE_SOURCES})
-
-ament_target_dependencies(tello_joy_main
-  ${JOY_NODE_DEPS})
 
 #=============
 # Install
@@ -186,7 +130,7 @@ ament_target_dependencies(tello_joy_main
 
 # Install nodes
 install(
-  TARGETS tello_driver_node tello_joy_node
+  TARGETS tello_driver_node
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -194,7 +138,7 @@ install(
 
 # Install executables
 install(
-  TARGETS tello_driver_main tello_joy_main tello_emulator
+  TARGETS tello_driver_main
   DESTINATION lib/${PROJECT_NAME}
 )
 
