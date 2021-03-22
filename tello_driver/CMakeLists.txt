@@ -32,6 +32,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_package(class_loader REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -39,7 +40,8 @@ find_package(tello_msgs REQUIRED)
 
 # Package includes not needed for CMake >= 2.8.11
 include_directories(
-  include)
+  include
+  include/asio)
 
 # h264decoder uses deprecated ffmpeg calls, turn off the warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
@@ -60,6 +62,7 @@ set(DRIVER_NODE_SOURCES
 set(DRIVER_NODE_DEPS
   geometry_msgs
   rclcpp
+  class_loader
   sensor_msgs
   std_msgs
   tello_msgs)
@@ -141,7 +144,6 @@ install(
 # Install various directories
 install(
   DIRECTORY
-  cfg
   launch
   DESTINATION share/${PROJECT_NAME}
 )
