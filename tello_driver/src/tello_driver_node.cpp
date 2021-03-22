@@ -23,9 +23,6 @@ namespace tello_driver_minimal
   CXT_MACRO_MEMBER(               /* Video data will arrive at this port */ \
   video_port, \
   int, 11111) \
-  CXT_MACRO_MEMBER(               /* Camera calibration path */ \
-  camera_info_path, \
-  std::string, "install/tello_driver/share/tello_driver/cfg/camera_info.yaml") \
   /* End of list */
 
   struct TelloDriverContext
@@ -43,8 +40,6 @@ namespace tello_driver_minimal
     Node("tello_driver", options)
   {
     // ROS publishers
-    image_pub_ = create_publisher<sensor_msgs::msg::Image>("image_raw", 1);
-    camera_info_pub_ = create_publisher<sensor_msgs::msg::CameraInfo>("camera_info", rclcpp::SensorDataQoS());
     flight_data_pub_ = create_publisher<tello_msgs::msg::FlightData>("flight_data", 1);
     tello_response_pub_ = create_publisher<tello_msgs::msg::TelloResponse>("tello_response", 1);
 
@@ -160,8 +155,8 @@ namespace tello_driver_minimal
     }
   }
 
-} // namespace tello_driver
+} // namespace tello_driver_minimal
 
 #include "rclcpp_components/register_node_macro.hpp"
 
-RCLCPP_COMPONENTS_REGISTER_NODE(tello_driver::TelloDriverNode)
+RCLCPP_COMPONENTS_REGISTER_NODE(tello_driver_minimal::TelloDriverNode)

@@ -19,7 +19,7 @@ int main(int argc, char **argv)
   options.use_intra_process_comms(true);
 
   // Create and add driver node
-  auto node = std::make_shared<tello_driver::TelloDriverNode>(options);
+  auto node = std::make_shared<tello_driver_minimal::TelloDriverNode>(options);
   executor.add_node(node);
 
   // Spin until rclcpp::ok() returns false

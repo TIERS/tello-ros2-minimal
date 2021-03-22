@@ -1,8 +1,7 @@
-#include <asio.hpp>
+#include <asio/asio.hpp>
 
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/twist.hpp"
-#include "sensor_msgs/msg/camera_info.hpp"
 #include "tello_msgs/msg/flight_data.hpp"
 #include "tello_msgs/msg/tello_response.hpp"
 #include "tello_msgs/srv/tello_action.hpp"
@@ -42,8 +41,6 @@ namespace tello_driver_minimal
     ~TelloDriverNode();
 
     // ROS publishers
-    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_pub_;
-    rclcpp::Publisher<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_pub_;
     rclcpp::Publisher<tello_msgs::msg::FlightData>::SharedPtr flight_data_pub_;
     rclcpp::Publisher<tello_msgs::msg::TelloResponse>::SharedPtr tello_response_pub_;
 
