@@ -4,7 +4,7 @@
 
 using asio::ip::udp;
 
-namespace tello_driver
+namespace tello_driver_minimal
 {
 
 #define TELLO_DRIVER_ALL_PARAMS \

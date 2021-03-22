@@ -1,6 +1,6 @@
 #include "tello_driver_node.hpp"
 
-namespace tello_driver
+namespace tello_driver_minimal
 {
 
   void TelloSocket::listen()

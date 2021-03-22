@@ -1,6 +1,6 @@
 #include "tello_driver_node.hpp"
 
-namespace tello_driver
+namespace tello_driver_minimal
 {
 
   CommandSocket::CommandSocket(TelloDriverNode *driver, std::string drone_ip,

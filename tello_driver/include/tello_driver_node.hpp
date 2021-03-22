@@ -10,7 +10,7 @@
 
 using asio::ip::udp;
 
-namespace tello_driver
+namespace tello_driver_minimal
 {
 
   class CommandSocket;

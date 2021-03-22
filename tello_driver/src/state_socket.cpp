@@ -2,7 +2,7 @@
 
 #include <regex>
 
-namespace tello_driver
+namespace tello_driver_minimal
 {
 
   // Goals:
