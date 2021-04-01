@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.com/TIERS/tello_ros.svg?branch=master)](https://travis-ci.com/TIERS/tello_ros)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-# `tello_ros`
+# `tello-ros2-minimal`
 
-`tello_ros2_minimal` is a minimal ROS2 driver for Tello and Tello EDU drones. It is particularly aimed at controlling the Tello drones from a Raspberry Pi Zero W running ROS Foxy.
+`tello-ros2-minimal` is a minimal ROS2 driver for Tello and Tello EDU drones. It is particularly aimed at controlling the Tello drones from a Raspberry Pi Zero W running ROS Foxy.
 
 ## Packages
 
