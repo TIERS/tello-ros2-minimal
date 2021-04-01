@@ -3,18 +3,14 @@
 
 # `tello_ros`
 
-`tello_ros` is a ROS2 driver for Tello and Tello EDU drones.
+`tello_ros2_minimal` is a minimal ROS2 driver for Tello and Tello EDU drones. It is particularly aimed at controlling the Tello drones from a Raspberry Pi Zero W running ROS Foxy.
 
 ## Packages
 
 There are 4 ROS packages:
 * `tello_driver` is a C++ ROS node that connects to the drone
 * `tello_msgs` is a set of ROS messages
-* `tello_description` contains robot description (URDF) files
-* `tello_gazebo` can be used to simulate a Tello drone in [Gazebo](http://gazebosim.org/),
- see the `README.md` in that package for details
 
-## Interface
 
 ### Overview
 
