@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/TIERS/tello_ros.svg?branch=master)](https://travis-ci.com/TIERS/tello_ros)
+
 # `tello_ros`
 
 `tello_ros` is a ROS2 driver for Tello and Tello EDU drones.
